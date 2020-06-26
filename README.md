@@ -40,6 +40,7 @@ if you haven't setup a GPG key yet, see next section
         gpg-enabled: "true"
         gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
         gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+        gpg-passphrase: ${{ secrets.GITHUB_GPG_PASSPHRASE }}
 
         git-release-bot-name: "release-bot"
         git-release-bot-email: "release-bot@example.com"
@@ -78,6 +79,7 @@ Here is an example with all of the options at the same time:
         gpg-enabled: "true"
         gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
         gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+        gpg-passphrase: ${{ secrets.GITHUB_GPG_PASSPHRASE }}
 
         maven-repo-server-id: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
         maven-repo-server-username: ${{ secrets.MVN_REPO_PRIVATE_REPO_USER }}
@@ -109,11 +111,12 @@ even for your release bot.
 - Create dedicate github account for your bot and add him into your team for your git repo.
 - Create a new GPG key: https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
 
-This github action needs the key ID and the key base64 encoded.
+This github action needs the key ID and the key base64 encoded. The key passphrase also can be specified.
 
 ```$xslt
         gpg-key-id: ${{ secrets.GITHUB_GPG_KEY_ID }}
         gpg-key: ${{ secrets.GITHUB_GPG_KEY }}
+        gpg-passphrase: ${{ secrets.GITHUB_GPG_PASSPHRASE }}
 ```
 
 ### Get the KID

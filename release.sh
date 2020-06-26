@@ -39,9 +39,8 @@ if [[ $GPG_ENABLED == "true" ]]; then
      git config --global user.signingkey $GPG_KEY_ID
      echo "GPG_KEY_ID = $GPG_KEY_ID"
      echo "Import the GPG key"
-     echo  "$GPG_KEY" | base64 -d > private.key
-     gpg --import ./private.key
-     rm ./private.key
+     cat <(echo -e "$GPG_KEY" | base64 -d) | gpg --batch --import
+     gpg --list-secret-keys --keyid-format LONG
 else
   echo "GPG signing is not enabled"
 fi

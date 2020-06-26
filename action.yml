@@ -10,18 +10,21 @@ inputs:
     description: 'Filter the branch to execute the release on'
     required: false
 
-  gpg-enabled: 
+  gpg-enabled:
     description: 'Enable gpg signing'
     required: false
     default: false
-  gpg-key-id: 
+  gpg-key-id:
     description: 'The GPG key ID'
     required: false
-  gpg-key: 
+  gpg-key:
     description: 'The GPG key'
     required: false
+  gpg-passphrase:
+    description: 'The GPG key passphrase'
+    required: false
 
-  maven-local-repo-path: 
+  maven-local-repo-path:
     description: 'The maven local repository path'
     required: false
     default: '$M2_HOME/repository'
@@ -53,7 +56,7 @@ inputs:
     required: false
     default: false
 
-      
+
   access-token:
     description: 'Github access token. https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line'
     required: true
@@ -61,7 +64,7 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args: 
+  args:
     - release.sh
   env:
     RELEASE_BRANCH_NAME: ${{ inputs.release-branch-name }}
@@ -69,6 +72,7 @@ runs:
     GPG_ENABLED: ${{ inputs.gpg-enabled }}
     GPG_KEY_ID: ${{ inputs.gpg-key-id }}
     GPG_KEY: ${{ inputs.gpg-key }}
+    GPG_PASSPHRASE: ${{ inputs.gpg-passphrase }}
 
     MAVEN_LOCAL_REPO_PATH: ${{ inputs.maven-local-repo-path }}
     MAVEN_REPO_SERVER_ID: ${{ inputs.maven-repo-server-id }}
